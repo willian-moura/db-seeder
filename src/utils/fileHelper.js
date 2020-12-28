@@ -1,7 +1,34 @@
 const pathLib = require("path");
 const fs = require("fs");
 
-const saveFile = function (path, name, content) {
+const getBasename = function (fullpath, removeExtension = false) {
+  if (removeExtension) {
+    return pathLib.parse(fullpath).name;
+  }
+  return pathLib.parse(fullpath).base;
+};
+
+const isNumber = function isNumber(n) {
+  return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
+};
+
+const incrementBasename = function (path) {
+  const basename = getBasename(path, true);
+  const extension = pathLib.extname(path);
+
+  const lastChar = basename.slice(-1);
+
+  if (isNumber(lastChar)) {
+    let i = parseInt(lastChar);
+    const newBasename = `${basename.slice(0, -1)}${i + 1}${extension}`;
+    return newBasename;
+  }
+
+  const newBasename = `${basename}1${extension}`;
+  return newBasename;
+};
+
+const saveFile = function (path, name, content, incrementIfExists = false) {
   return new Promise((resolve, reject) => {
     if (!path) {
       reject(new Error("Invalid path"));
@@ -11,7 +38,15 @@ const saveFile = function (path, name, content) {
       reject(new Error("Invalid name"));
     }
 
-    const fullPath = pathLib.join(path, name);
+    let fullPath = pathLib.join(path, name);
+
+    if (fs.existsSync(fullPath)) {
+      if (!incrementIfExists) {
+        return reject(new Error(`${fullPath} already exists`));
+      }
+      const newName = incrementBasename(fullPath);
+      return saveFile(path, newName, content, true);
+    }
 
     fs.writeFile(fullPath, content, function (err) {
       if (err) reject(err);
@@ -20,10 +55,10 @@ const saveFile = function (path, name, content) {
   });
 };
 
-const mkDir = function (path, name) {
+const mkDir = function (path, name, createIfNotExists = false) {
   return new Promise((resolve, reject) => {
     if (!path) {
-      reject(new Error("Invalid path"));
+      reject(new Error("--path is required"));
     }
 
     if (!name) {
@@ -33,8 +68,10 @@ const mkDir = function (path, name) {
     const fullPath = pathLib.join(path, name);
 
     if (fs.existsSync(fullPath)) {
-      reject(new Error(`${fullPath} already exists`));
-      return;
+      if (createIfNotExists) {
+        return resolve();
+      }
+      return reject(new Error(`${fullPath} already exists`));
     }
 
     fs.mkdir(fullPath, { recursive: true }, function (err) {
@@ -44,7 +81,23 @@ const mkDir = function (path, name) {
   });
 };
 
+const getJson = function (path) {
+  const json = fs.readFileSync(path);
+  return JSON.parse(json);
+};
+
+const parseSeederPath = function (fullPath) {
+  return {
+    name: pathLib.parse(fullPath).name,
+    base: pathLib.parse(fullPath).base,
+    ext: pathLib.parse(fullPath).ext,
+    projectDir: pathLib.dirname(pathLib.dirname(fullPath)),
+  };
+};
+
 module.exports = {
   saveFile,
   mkDir,
+  getJson,
+  parseSeederPath,
 };
