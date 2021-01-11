@@ -28,7 +28,13 @@ const incrementBasename = function (path) {
   return newBasename;
 };
 
-const saveFile = function (path, name, content, incrementIfExists = false) {
+const saveFile = function (
+  path,
+  name,
+  content,
+  incrementIfExists = false,
+  overwrite = false
+) {
   return new Promise((resolve, reject) => {
     if (!path) {
       reject(new Error("Invalid path"));
@@ -40,7 +46,7 @@ const saveFile = function (path, name, content, incrementIfExists = false) {
 
     let fullPath = pathLib.join(path, name);
 
-    if (fs.existsSync(fullPath)) {
+    if (fs.existsSync(fullPath) && !overwrite) {
       if (!incrementIfExists) {
         return reject(new Error(`${fullPath} already exists`));
       }
@@ -91,6 +97,7 @@ const parseSeederPath = function (fullPath) {
     name: pathLib.parse(fullPath).name,
     base: pathLib.parse(fullPath).base,
     ext: pathLib.parse(fullPath).ext,
+    dir: pathLib.parse(fullPath).dir,
     projectDir: pathLib.dirname(pathLib.dirname(fullPath)),
   };
 };
