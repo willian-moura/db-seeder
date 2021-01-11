@@ -1,9 +1,10 @@
 const fs = require("fs");
 const pathLib = require("path");
 const axios = require("../services/axios");
-const { parseSeederPath, getJson } = require("../utils/fileHelper");
+const { parseSeederPath, getJson, saveFile } = require("../utils/fileHelper");
+const { processData } = require("../utils/dataHelper");
 
-module.exports = async function (args) {
+module.exports = async (args) => {
   if (!args.seeder_path) {
     throw new Error("--seeder_path option is required!");
   }
@@ -17,13 +18,15 @@ module.exports = async function (args) {
     return console.log("SEEDER NOT ACTIVE IGNORED");
   }
 
-  seederConfig.requests.forEach(async (request, index) => {
+  for (const [index, request] of seederConfig.requests.entries()) {
     if (request._active) {
-      axios
+      await axios
         .request({
           url: seederConfig.url,
           method: seederConfig.method,
-          data: request.data || null,
+          data: request.data
+            ? processData(request.data, seederPath.projectDir)
+            : null,
           headers: projectConfig.authType
             ? {
                 Authorization: `${projectConfig.authType} ${projectConfig.authKey}`,
@@ -34,7 +37,8 @@ module.exports = async function (args) {
           (response) => {
             console.log(`\nREQUEST ${request._identifier || index}`);
             console.log(`RESPONSE[${response.status}]: ${response.statusText}`);
-            // console.log(response.data);
+            console.log(response.data.id);
+            request._database_id = response.data.id;
           },
           (error) => {
             console.log(`\nREQUEST ${request._identifier || index}`);
@@ -48,5 +52,14 @@ module.exports = async function (args) {
       console.log(`\nREQUEST ${request._identifier || index}`);
       console.log(`\tNOT ACTIVE REQUEST IGNORED`);
     }
-  });
+  }
+
+  const updatedSeederConfig = JSON.stringify(seederConfig, null, "  ");
+  return await saveFile(
+    seederPath.dir,
+    seederPath.base,
+    updatedSeederConfig,
+    false,
+    true
+  );
 };
