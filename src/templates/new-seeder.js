@@ -20,16 +20,9 @@ module.exports = function (args) {
     url: fullUrl,
     requests: [
       {
-        _active: false,
-        _identifier: "request1",
-        data: {
-          some_atrubute: "some_value",
-          some_atrubute2: "some_value2",
-        },
-      },
-      {
-        _active: false,
-        _identifier: "request2",
+        _active: true,
+        _id: null,
+        _database_id: null,
         data: {
           some_atrubute: "some_value",
           some_atrubute2: "some_value2",
