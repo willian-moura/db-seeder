@@ -67,7 +67,28 @@ const ArgvHandler = function () {
         alias: "p",
         type: "string",
       },
-    }).argv;
+    })
+    .command(
+      "login",
+      "Login the user automaticaly on the route, and set the auth key on project config file",
+      {
+        project_path: {
+          description: "the path of project",
+          alias: "p",
+          type: "string",
+        },
+        user: {
+          description: "user to login",
+          alias: "u",
+          type: "string",
+        },
+        pass: {
+          description: "password to login",
+          alias: "w",
+          type: "string",
+        },
+      }
+    ).argv;
 };
 
 module.exports = ArgvHandler;
