@@ -1,7 +1,24 @@
 const { getJson } = require("../utils/fileHelper");
 
 const processData = (data, projectDir) => {
-  let treatedData = data;
+  const getForeignKey = (field, projectDir) => {
+    const [obj, value] = field.split("/");
+    const [entity, prop] = obj.split(".");
+
+    const entityPath = `${projectDir}/seeders/${entity}.json`;
+    const seederConfig = getJson(entityPath);
+
+    const allRequests = seederConfig.requests;
+    const request = allRequests.find((element) => element[prop] == value);
+
+    if (!request) {
+      throw new Error(`Foreign key ${field} not found`);
+    }
+
+    return request._database_id;
+  };
+
+  let treatedData = { ...data };
   for (var prop in data) {
     if (Object.prototype.hasOwnProperty.call(data, prop)) {
       if (typeof data[prop] !== "string") {
@@ -16,27 +33,29 @@ const processData = (data, projectDir) => {
       }
     }
   }
-  console.log(treatedData);
   return treatedData;
 };
 
-const getForeignKey = (field, projectDir) => {
-  const [obj, value] = field.split("/");
-  const [entity, prop] = obj.split(".");
-
-  const entityPath = `${projectDir}/seeders/${entity}.json`;
-  const seederConfig = getJson(entityPath);
-
-  const allRequests = seederConfig.requests;
-  const request = allRequests.find((element) => element[prop] == value);
-
-  if (!request) {
-    throw new Error(`Foreign key ${field} not found`);
+const getNestedProperty = (entity, prop) => {
+  if (typeof prop === "string") {
+    return entity[prop];
   }
 
-  return request._database_id;
+  if (Array.isArray(prop)) {
+    let aux = entity;
+    prop.forEach((value, index) => {
+      if (!aux[value]) {
+        throw new Error(`Nested property ${value} not exists`);
+      }
+      aux = aux[value];
+    });
+    return aux;
+  }
+
+  throw new Error(`Entity property must be a string or a array`);
 };
 
 module.exports = {
   processData,
+  getNestedProperty,
 };
