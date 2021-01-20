@@ -12,7 +12,7 @@ module.exports = function (args) {
   }
 
   const template = {
-    _help: `Use the bodies array to put the body of your seeder. Each body inserted will be a request on that route`,
+    _help: `Use the requests array to put the body of your seeder. Each body inserted will be a request on this route`,
     _active: true,
     name: args.name || "New seeder",
     description: args.description || "Imagine a beautiful description here :)",
