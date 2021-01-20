@@ -8,6 +8,9 @@
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "bdseeder": "./src/index.js"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "yargs": "^16.2.0"
