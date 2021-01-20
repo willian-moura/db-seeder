@@ -37,7 +37,7 @@ module.exports = async (args) => {
           (response) => {
             console.log(`\nREQUEST ${request._identifier || index}`);
             console.log(`RESPONSE[${response.status}]: ${response.statusText}`);
-            console.log(response.data.id);
+            console.log(response.data);
             request._database_id = response.data.id;
           },
           (error) => {
