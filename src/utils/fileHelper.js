@@ -1,18 +1,17 @@
 const pathLib = require("path");
 const fs = require("fs");
 
-const getBasename = function (fullpath, removeExtension = false) {
-  if (removeExtension) {
-    return pathLib.parse(fullpath).name;
-  }
-  return pathLib.parse(fullpath).base;
-};
-
-const isNumber = function isNumber(n) {
-  return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
-};
-
 const incrementBasename = function (path) {
+  const getBasename = function (fullpath, removeExtension = false) {
+    if (removeExtension) {
+      return pathLib.parse(fullpath).name;
+    }
+    return pathLib.parse(fullpath).base;
+  };
+
+  const isNumber = function isNumber(n) {
+    return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
+  };
   const basename = getBasename(path, true);
   const extension = pathLib.extname(path);
 
