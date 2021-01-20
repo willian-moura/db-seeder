@@ -88,7 +88,14 @@ const ArgvHandler = function () {
           type: "string",
         },
       }
-    ).argv;
+    )
+    .command("seeder_project", "Execute all active seeds of project", {
+      project_path: {
+        description: "the path of project",
+        alias: "p",
+        type: "string",
+      },
+    }).argv;
 };
 
 module.exports = ArgvHandler;

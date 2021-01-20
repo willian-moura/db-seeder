@@ -27,7 +27,7 @@ const incrementBasename = function (path) {
   return newBasename;
 };
 
-const saveFile = function (
+const saveFile = async function (
   path,
   name,
   content,
@@ -50,12 +50,19 @@ const saveFile = function (
         return reject(new Error(`${fullPath} already exists`));
       }
       const newName = incrementBasename(fullPath);
-      return saveFile(path, newName, content, true);
+      try {
+        resolve(saveFile(path, newName, content, true));
+      } catch (error) {
+        reject(error);
+      }
     }
 
     fs.writeFile(fullPath, content, function (err) {
       if (err) reject(err);
-      resolve(`${fullPath} file created successfully!`);
+      resolve({
+        message: `${fullPath} file created successfully!`,
+        filePath: fullPath,
+      });
     });
   });
 };

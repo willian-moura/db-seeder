@@ -15,11 +15,12 @@ module.exports = async (args) => {
   const seederConfig = getJson(args.seeder_path);
 
   if (!seederConfig._active) {
-    return console.log("SEEDER NOT ACTIVE IGNORED");
+    return console.log("NOT ACTIVE SEEDER IGNORED");
   }
 
   for (const [index, request] of seederConfig.requests.entries()) {
     if (request._active) {
+      console.log(`\nRUNNING SEEDER ${seederConfig.name}`);
       await axios
         .request({
           url: seederConfig.url,

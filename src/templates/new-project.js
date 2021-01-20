@@ -13,6 +13,7 @@ module.exports = function (args) {
       passwordFieldName: "password",
       passwordFieldData: "admin",
     },
+    seeders: [],
   };
 
   const json = JSON.stringify(template, null, "  ");
