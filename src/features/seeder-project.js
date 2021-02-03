@@ -4,7 +4,7 @@ const { getJson } = require("../utils/fileHelper");
 
 module.exports = async (args) => {
   if (!args.project_path) {
-    throw new Error("--project_path option is required!");
+    args.project_path = ".";
   }
 
   const configPath = pathLib.join(args.project_path, "config.json");

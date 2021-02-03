@@ -6,7 +6,7 @@ const { saveFile, mkDir } = require("../utils/fileHelper");
 
 module.exports = async function (args) {
   if (!args.path) {
-    throw new Error("--path option is required!");
+    args.path = ".";
   }
 
   const newProjectFile = newProjectTemplate(args);
