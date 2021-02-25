@@ -89,7 +89,7 @@ const ArgvHandler = function () {
         },
       }
     )
-    .command("seeder_project", "Execute all active seeds of project", {
+    .command("project", "Execute all active seeds of project", {
       project_path: {
         description: "the path of project",
         alias: "p",

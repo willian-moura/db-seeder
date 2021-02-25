@@ -7,7 +7,7 @@ const { saveFile, incrementBasename, mkDir } = require("../utils/fileHelper");
 
 module.exports = async function (args) {
   if (!args.project_path) {
-    throw new Error("--project_path option is required!");
+    args.project_path = ".";
   }
 
   const projectPath = pathLib.join(args.project_path, "config.json");

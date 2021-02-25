@@ -22,7 +22,7 @@ const FeatureHandler = function (argv) {
     case "login":
       return Login(argv);
       break;
-    case "seeder_project":
+    case "project":
       return SeederProject(argv);
       break;
     default:
