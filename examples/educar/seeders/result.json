@@ -1,0 +1,19 @@
+{
+  "_help": "Use the requests array to put the body of your seeder. Each body inserted will be a request on this route",
+  "_active": true,
+  "name": "result",
+  "description": "Imagine a beautiful description here :)",
+  "method": "POST",
+  "url": "http://localhost:8080/result",
+  "requests": [
+    {
+      "_active": true,
+      "_id": null,
+      "_database_id": 1,
+      "data": {
+        "description": "MÉDIA FINAL",
+        "abbreviation": "MDF"
+      }
+    }
+  ]
+}

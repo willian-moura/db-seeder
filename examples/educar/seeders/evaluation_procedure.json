@@ -1,0 +1,21 @@
+{
+  "_help": "Use the requests array to put the body of your seeder. Each body inserted will be a request on this route",
+  "_active": true,
+  "name": "evaluation_procedure",
+  "description": "Imagine a beautiful description here :)",
+  "method": "POST",
+  "url": "http://localhost:8080/evaluation-procedure",
+  "requests": [
+    {
+      "_active": true,
+      "_id": 1,
+      "_database_id": 1,
+      "data": {
+        "description": "FICHA AVALIATIVA",
+        "frequencyType": "perHour",
+        "evaluationFormId": 1,
+        "minimumFrequency": 75
+      }
+    }
+  ]
+}

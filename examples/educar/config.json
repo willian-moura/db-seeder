@@ -1,0 +1,23 @@
+{
+  "name": "educar",
+  "description": "Imagine a beautiful description here :)",
+  "baseUrl": "http://localhost:8080",
+  "authType": "Bearer",
+  "authKey": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiY2U4ODc5MmY3MWMxYTAzZmJmMmI5MzkzNjZhZjVhN2ZmZTllNGI2ZjI0ZTFjZjlkMmViNDY2YmU5ZjIyNzE3ODZhY2Y0N2NmZDIxZjhlZWYiLCJpYXQiOjE2MTQyODIyOTQsIm5iZiI6MTYxNDI4MjI5NCwiZXhwIjoxNjQ1ODE4Mjk0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.A66HiE13Dq6H6Xw4ZTi337UprxAc1Gn1ZPbyYL8M-NOvuwUAqNRe3eyf-298J6q_s2sDMEW04gu_lD176HBrO29EpG1vHtj2GbCDFE0Xx6AXip7XfIgdTYA5OkEem6X6sVD7-CJGXKXN0C7alNL8mZ3BHMiFRLYN97f9KwS_iwqZedFVY73MHiddbRd7vR8yjDX0QjYAIdvObuAxQnrnhHRhbu6URwiLTHwfkxf25NoSfagcgpGYM3_Ul6Hu2Wfd0PrWdtfqtoIXm0lZpOZy2Vf3-HC7qY7lJ0KpJ6kLrn6nQs2-g1upzkRa3RWktVngBEn_vfkvlTuidrvN6qUcu0rx632NWq49dtufKmOxMUz7cXT_5JV9UFZxTl0J_Ii3KZYi-CioezIelKjTPLOaOMULngcjlMj7aQKRKViAuMiswv_RyLD9yNYKXF2jeZn35LmlQD4vV5W0UQwayulj8lxs2zP8vZgB7YNu8jll9BiibmE3NBtJDuKPJVOGEBIFvKFavq7m_gvH4dutONn0K9NbMDeyjg6hwc02Q6ytWOpCTVpnUqnQykKxkHgA8xEGMHd1UAwjVZocGnkeBPT7Jb9lmcl_ZPx28gq0lM3zGTcFEyjRxcNYY_p-HShu1c0Y0rpAiWqi3Tg4912qmok9VuBpquukJIuRkxjvFgiQrKo",
+  "login": {
+    "url": "/auth/login",
+    "responseAccessKey": "accessToken",
+    "userFieldName": "cpf",
+    "userFieldData": "02931969150",
+    "passwordFieldName": "password",
+    "passwordFieldData": "12345"
+  },
+  "seeders": [
+    "seeders/secretary_stage.json",
+    "seeders/secretary_functionsActivities.json",
+    "seeders/evaluation_period.json",
+    "seeders/evaluation_form.json",
+    "seeders/result.json",
+    "seeders/evaluation_procedure.json"
+  ]
+}
