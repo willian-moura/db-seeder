@@ -1,20 +1,20 @@
 {
   "_help": "Use the requests array to put the body of your seeder. Each body inserted will be a request on this route",
   "_active": true,
-  "name": "evaluation_procedure",
+  "name": "lunch_unitGroup",
   "description": "Imagine a beautiful description here :)",
   "method": "POST",
-  "url": "http://localhost:8080/evaluation-procedure",
+  "url": "http://localhost:8080/administration/unit-group",
   "requests": [
     {
       "_active": true,
-      "_id": 1,
+      "_id": null,
       "_database_id": 1,
       "data": {
-        "description": "AVALIAÇÃO",
-        "frequencyType": "perHour",
-        "evaluationFormId": 1,
-        "minimumFrequency": 75
+        "name": "FIRST UNIT",
+        "units": [
+          1
+        ]
       }
     }
   ]

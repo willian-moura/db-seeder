@@ -4,7 +4,7 @@
   "name": "evaluation_form",
   "description": "Imagine a beautiful description here :)",
   "method": "POST",
-  "url": "http://localhost:8080/evaluation/form",
+  "url": "http://localhost:8080/evaluation-form",
   "requests": [
     {
       "_active": true,
@@ -17,6 +17,19 @@
         "highestScore": 10,
         "variation": 0.5,
         "minimumApproval": 6
+      }
+    },
+    {
+      "_active": true,
+      "_id": 2,
+      "_database_id": 2,
+      "data": {
+        "description": "FICHA AVALIATIVA",
+        "resultType": "evaluationOpnion",
+        "lowestScore": null,
+        "highestScore": null,
+        "variation": null,
+        "minimumApproval": null
       }
     }
   ]

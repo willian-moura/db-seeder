@@ -4,7 +4,7 @@
   "name": "result",
   "description": "Imagine a beautiful description here :)",
   "method": "POST",
-  "url": "http://localhost:8080/result",
+  "url": "http://localhost:8080/result-type",
   "requests": [
     {
       "_active": true,
@@ -13,6 +13,24 @@
       "data": {
         "description": "MÉDIA FINAL",
         "abbreviation": "MDF"
+      }
+    },
+    {
+      "_active": true,
+      "_id": null,
+      "_database_id": 2,
+      "data": {
+        "description": "MÉDIA ANUAL",
+        "abbreviation": "MDA"
+      }
+    },
+    {
+      "_active": true,
+      "_id": null,
+      "_database_id": 3,
+      "data": {
+        "description": "PARECER FINAL",
+        "abbreviation": "PF"
       }
     }
   ]

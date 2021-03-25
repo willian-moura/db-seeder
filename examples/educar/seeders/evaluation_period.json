@@ -45,6 +45,16 @@
         "abbreviation": "4B",
         "sumWorkLoad": true
       }
+    },
+    {
+      "_active": true,
+      "_id": 5,
+      "_database_id": 5,
+      "data": {
+        "description": "EXAME FINAL",
+        "abbreviation": "EF",
+        "sumWorkLoad": true
+      }
     }
   ]
 }
