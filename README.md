@@ -7,6 +7,10 @@ O projeto está sendo desenvolvido em NodeJs, e tem como objetivo ser um seeder 
 - autenticar um usuário para o projeto, passando as credenciais do mesmo (nomes dos campos de login podem ser alterados no arquivo de configuração do projeto). Com um usuário logado, todas requisições do seeder serão enviadas com o token autenticado do usuário logado
 - executar todos os seeders de um projeto
 
+## como usar
+Para usar a ferramenta, clone o repositório e, no diretório raíz do projeto, execute `node ./src/inde.js {comandos...}` para rodar os comandos.
+Também é possível usar o comando `bdseeder {comandos...}` globalmente executando o comando `npm link` dentro da pasta raíz do projeto.
+
 ## comandos
 `create_project`: cria um projeto
   Parâmentros:
