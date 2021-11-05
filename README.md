@@ -37,3 +37,53 @@ O projeto está sendo desenvolvido em NodeJs, e tem como objetivo ser um seeder 
  `project`: executa todos os seeders presentes no projeto
   Parâmetros
   - `-p` ou `--project_path`: caminho do projeto
+
+## descrição dos arquivos gerados
+  `{diretorioDoProjeto}/config.json`: arquivo de configuração do projeto
+  ```
+  {
+    "name": "New project", //.....................................| nome do projeto
+    "description": "Imagine a beautiful description here :)", //..| descrição do projeto
+    "baseUrl": "http://localhost:8080", //........................| URL base para o projeto
+    "authType": null, // .........................................| tipo de token de autenticação usado nas requisições
+    "authKey": null, // ..........................................| chave de autenticação usada nas requisições
+    "login": { // ................................................| configurações referentes a funcionalidade de autenticação:
+      "url": "", // .................................................| URL para buscar o token de autenticação
+      "responseAccessKey": "token", // ..............................| chave contendo o token na resposta
+      "userFieldName": "user", // ...................................| nome do campo a ser enviado contendo o usuário (ex: user, cpf, email)
+      "userFieldData": "admin", // ..................................| usuário a ser autenticado (ex: usuario@teste.com, 111.111.111-11, nomeDeUsuario)
+      "passwordFieldName": "password", // ...........................| nome do campo a ser enviado contendo a senha do usuário (ex: password, pass, )
+      "passwordFieldData": "admin" // ...............................| senha do usuário a ser autenticado
+    },
+    "seeders": [] // .............................................| seeders a serem executados na ordem de execução (caso não queira executar um seeder específico durante a execução do projeto inteiro, recomenda-se apenas setar "_active: false" no arquivo do seeder desejado)
+  }
+  ```
+  
+  `{diretorioDoProjeto}/seeders/{diretorioDoSeeder}.json`
+  ```
+  {
+    "_help": "Use the requests array to put the body of your seeder. Each body inserted will be a request on this route", //.. apenas uma mensagem de ajuda :)
+    "_active": true, //..................................................| situação do seeder, use false para que ele não seja executado automaticamente quando o projeto for "seedado"
+    "name": "deadline", //...............................................| nome do seeder
+    "description": "Imagine a beautiful description here :)", //.........| descrição do seeder
+    "method": "POST", //.................................................| método usado nas requisições
+    "url": "http://localhost:8080/deadline/1", //........................| URL da requisição (quando gerado automaticamente insere a URL base do projeto, então se for alterada deve-se lembrar de inseri-la novamente)
+    "requests": [ // ....................................................| Array contendo as requisições a serem enviadas
+      {
+        "_active": true, // ...............................................| situação da requisição, use false para que ela não seja executada durante o seeder
+        "_id": null, // ...................................................| identificador único da requisição (deve ser inserido manualmente)
+        "_database_id": null, // ..........................................| id retornado após a requisição (não deve ser alterado)
+        "data": { // ........................................................| payload que será enviado como body da requisição
+          "some_atrubute": "some_value",
+          "some_atrubute2": "some_value2"
+        }
+      }
+    ]
+  }
+  ```
+  
+##Trabalhos futuros
+[ ] deixar estável funcionalidade de usar requisições de outro seeder como chaves estrangeiras
+[ ] implementar interface gráfica usando Electron
+
+Fiquem livres para sugerirem mudanças e melhorias para o projeto :(
