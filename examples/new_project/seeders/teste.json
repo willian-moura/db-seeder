@@ -1,20 +1,18 @@
 {
   "_help": "Use the requests array to put the body of your seeder. Each body inserted will be a request on this route",
   "_active": true,
-  "name": "lunch_unitGroup",
+  "name": "teste",
   "description": "Imagine a beautiful description here :)",
   "method": "POST",
-  "url": "http://localhost:8080/administration/unit-group",
+  "url": "http://localhost:8080/teste",
   "requests": [
     {
       "_active": true,
       "_id": null,
-      "_database_id": 1,
+      "_database_id": null,
       "data": {
-        "name": "FIRST UNIT",
-        "units": [
-          1
-        ]
+        "some_atrubute": "some_value",
+        "some_atrubute2": "some_value2"
       }
     }
   ]

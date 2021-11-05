@@ -1,0 +1,18 @@
+{
+  "name": "New project",
+  "description": "Imagine a beautiful description here :)",
+  "baseUrl": "http://localhost:8080",
+  "authType": null,
+  "authKey": null,
+  "login": {
+    "url": "",
+    "responseAccessKey": "token",
+    "userFieldName": "user",
+    "userFieldData": "admin",
+    "passwordFieldName": "password",
+    "passwordFieldData": "admin"
+  },
+  "seeders": [
+    "examples/new_project/seeders/teste.json"
+  ]
+}
