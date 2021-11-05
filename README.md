@@ -86,4 +86,5 @@ O projeto está sendo desenvolvido em NodeJs, e tem como objetivo ser um seeder 
 - [ ] deixar estável funcionalidade de usar requisições de outro seeder como chaves estrangeiras
 - [ ] implementar interface gráfica usando Electron
 
-Fiquem livres para sugerirem mudanças e melhorias para o projeto :(
+---
+Fiquem livres para sugerirem mudanças e melhorias para o projeto :)
