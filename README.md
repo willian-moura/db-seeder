@@ -9,7 +9,7 @@ O projeto está sendo desenvolvido em NodeJs, e tem como objetivo ser um seeder 
 
 ## como usar
 Para usar a ferramenta, clone o repositório e, no diretório raíz do projeto, execute `node ./src/inde.js {comandos...}` para rodar os comandos.
-Também é possível usar o comando `bdseeder {comandos...}` globalmente executando o comando `npm link` dentro da pasta raíz do projeto.
+Também é possível usar o comando `dbseeder {comandos...}` globalmente executando o comando `npm link` dentro da pasta raíz do projeto.
 
 ## comandos
 `create_project`: cria um projeto
