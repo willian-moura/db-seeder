@@ -47,6 +47,12 @@ module.exports = async (args) => {
               `ERROR[${error.response.status}]:`,
               error.response.statusText
             );
+            if(error.response?.data?.errors){
+                console.log(
+                  `ERRORS:`,
+                  error.response?.data?.errors
+                );
+            }
           }
         );
     } else {
