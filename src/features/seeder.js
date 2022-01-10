@@ -37,16 +37,12 @@ module.exports = async (args) => {
         .then(
           (response) => {
             console.log(`\nREQUEST ${request._identifier || index}`);
-            console.log(`RESPONSE[${response.status}]: ${response.statusText}`);
-            console.log(response.data);
+            console.log(`%c RESPONSE[${response.status}]: ${response.statusText} `, `background: #222;color: white;`);
             request._database_id = response.data.id;
           },
           (error) => {
             console.log(`\nREQUEST ${request._identifier || index}`);
-            console.log(
-              `ERROR[${error.response.status}]:`,
-              error.response.statusText
-            );
+            console.log(`%c ERROR[${error.response.status}]: ${error.response.statusText} `, `background: red;color: white;`);
             if(error.response?.data?.errors){
                 console.log(
                   `ERRORS:`,

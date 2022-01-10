@@ -8,10 +8,14 @@ module.exports = function (args) {
     login: {
       url: "",
       responseAccessKey: "token",
+      responseTokenTypeKey: "token_type",
       userFieldName: "user",
       userFieldData: "admin",
       passwordFieldName: "password",
       passwordFieldData: "admin",
+      data: {
+
+      }
     },
     seeders: [],
   };
