@@ -1,83 +1,85 @@
+🇧🇷 [Versão em português](./README.pt-br.md)
+
 # db-seeder
 
-O projeto está sendo desenvolvido em NodeJs, e tem como objetivo ser um seeder de dados para aplicações Web. Entre suas funcionalidades já implementadas, estão:
-- criar um projeto com nome, descrição, URL base e token para autenticação
-- criar um seeder para um projeto, com nome, descrição, metodo HTTP e URL (criar um seeder apenas irá gerar um arquivo JSON pré-definido no diretório do projeto, esse arquivo deve ser modificado adicionando os payloads para cada requisição)
-- executar um seeder específico passando o caminho do mesmo
-- autenticar um usuário para o projeto, passando as credenciais do mesmo (nomes dos campos de login podem ser alterados no arquivo de configuração do projeto). Com um usuário logado, todas requisições do seeder serão enviadas com o token autenticado do usuário logado
-- executar todos os seeders de um projeto
+The project is being developed in NodeJS and its goals is to be a database seeder for web applications. The features already developed are:
+- create a project with name, description, base URL and token for authentication;
+- create a seeder for a project, with name, description, HTTP method and URL (create the seeder will only generate a pre-formated JSON file in the project's directory, this file must be updated adding the payloads for each request);
+- execute a specific seeder passing its path;
+- authenticate an user for the project, inserting its credentials (the login fields names can also be changed in the project's configuration file). With a logged user, all seeder requests will be sent using the authenticated token of the user;
+- execute all project's seeders;
 
-## como usar
-Para usar a ferramenta, clone o repositório e, no diretório raíz do projeto, execute `node ./src/inde.js {comandos...}` para rodar os comandos.
-Também é possível usar o comando `dbseeder {comandos...}` globalmente executando o comando `npm link` dentro da pasta raíz do projeto.
+## How it's works
+To use this tool, clone the github repository and, in the root project's directory, run `node ./src/inde.js {commands...}` to execute the commands.
+Also it's possible use the command `dbseeder {commands...}` globally running before `npm link` inside the root project's directory.
 
-## comandos
-`create_project`: cria um projeto
-  Parâmentros:
-  - `-p` ou `--path`: caminho onde o diretório do projeto será salvo
-  - `-n` ou `--name`: nome do projeto
-  - `-d` ou `--description`: descrição do projeto
-  - `-b` ou `--baseUrl`: URL base para qual serão feitas requisições (ex: `localhost:3333`)
-  - `-a` ou `--auth_type`: tipo de toke usado na autenticação (ex: bearer)
+## Commands
+`create_project`: creates a project
+  Parameters:
+  - `-p` or `--path`: path where the project's directory will be stored
+  - `-n` or `--name`: project's name
+  - `-d` or `--description`: project's description
+  - `-b` or `--baseUrl`: base URL of the API which will be receive the requests (e.g.: `"localhost:3333"`)
+  - `-a` or `--auth_type`: token type used for authentication (e.g.: `"bearer"`)
 
- `create_seeder`: cria um seeder para um projeto
-  Parâmetros
-  - `-p` ou `--project_path`: caminho do projeto
-  - `-n` ou `--name`: nome do seeder
-  - `-d` ou `--description`: descrição do seeder
-  - `-t` ou `--method`: o tipo de método HTTP usado nas requisições
-  - `-r` ou `--url`: URL da requisição (ex: /cars/create)
+ `create_seeder`: creates a seeder for the project
+  Parameters
+  - `-p` or `--project_path`: project's path
+  - `-n` or `--name`: seeder's path
+  - `-d` or `--description`: seeder's description
+  - `-t` or `--method`: HTTP method that will be used for the requests
+  - `-r` or `--url`: request URL (e.g.: `"/cars/create"`)
 
- `seeder`: executa um seeder específico
-  Parâmetros
-  - `-p` ou `--seeder_path`: caminho do arquivo do seeder
+ `seeder`: runs a specific seeder
+  Parameters
+  - `-p` or `--seeder_path`: seeder's path
  
- `login`: autentica um usuário para o projeto
-  Parâmetros
-  - `-p` ou `--project_path`: caminho do projeto
-  - `-u` ou `--user`: usuário a ser autenticado (ex: usuario@teste.com, 111.111.111-11)
-  - `-w` ou `--pass`: senha do usuário
+ `login`: authenticates an user for the project
+  Parameters
+  - `-p` or `--project_path`: project's file
+  - `-u` or `--user`: user to be authenticated (e.g.: `"user@test.com"`, `"111.111.111-11"`)
+  - `-w` or `--pass`: user's password
 
- `project`: executa todos os seeders presentes no projeto
-  Parâmetros
-  - `-p` ou `--project_path`: caminho do projeto
+ `project`: runs all seeders of the project
+  Parameters
+  - `-p` or `--project_path`: project's path
 
-## descrição dos arquivos gerados
-  `{diretorioDoProjeto}/config.json`: arquivo de configuração do projeto
+## Generated files explanation
+  `{projectDirectory}/config.json`: project's configuration file
   ```
   {
-    "name": "New project", //.....................................| nome do projeto
-    "description": "Imagine a beautiful description here :)", //..| descrição do projeto
-    "baseUrl": "http://localhost:8080", //........................| URL base para o projeto
-    "authType": null, // .........................................| tipo de token de autenticação usado nas requisições
-    "authKey": null, // ..........................................| chave de autenticação usada nas requisições
-    "login": { // ................................................| configurações referentes a funcionalidade de autenticação:
-      "url": "", // .................................................| URL para buscar o token de autenticação
-      "responseAccessKey": "token", // ..............................| chave contendo o token na resposta
-      "userFieldName": "user", // ...................................| nome do campo a ser enviado contendo o usuário (ex: user, cpf, email)
-      "userFieldData": "admin", // ..................................| usuário a ser autenticado (ex: usuario@teste.com, 111.111.111-11, nomeDeUsuario)
-      "passwordFieldName": "password", // ...........................| nome do campo a ser enviado contendo a senha do usuário (ex: password, pass, )
-      "passwordFieldData": "admin" // ...............................| senha do usuário a ser autenticado
+    "name": "New project", //.....................................| project's name
+    "description": "Imagine a beautiful description here :)", //..| project's description
+    "baseUrl": "http://localhost:8080", //........................| project's base URL
+    "authType": null, // .........................................| authentication token type
+    "authKey": null, // ..........................................| authentication key used in requests
+    "login": { // ................................................| authentication feature settings:
+      "url": "", // .................................................| API authentication URL
+      "responseAccessKey": "token", // ..............................| data key that will contains the token on response
+      "userFieldName": "user", // ...................................| field's name that will be sent containing the user (e.g.: user, email)
+      "userFieldData": "admin", // ..................................| field's value containing the user that will be authenticated (e.g.: user@test.com, 111.111.111-11, myUserName)
+      "passwordFieldName": "password", // ...........................| field's name that will be sent containing the password for authentication (e.g.: password, pass)
+      "passwordFieldData": "admin" // ...............................| field's value containing the password for authentication
     },
-    "seeders": [] // .............................................| seeders a serem executados na ordem de execução (caso não queira executar um seeder específico durante a execução do projeto inteiro, recomenda-se apenas setar "_active: false" no arquivo do seeder desejado)
+    "seeders": [] // .............................................| seeders that will be runned ordered (case you don't want run a specific seeder during the command for entire project seeder, we recommend just to set "_active: false" in the seeder's file desired
   }
   ```
   
-  `{diretorioDoProjeto}/seeders/{diretorioDoSeeder}.json`
+  `{projectDirectory}/seeders/{seederDirectory}.json`
   ```
   {
-    "_help": "Use the requests array to put the body of your seeder. Each body inserted will be a request on this route", //.. apenas uma mensagem de ajuda :)
-    "_active": true, //..................................................| situação do seeder, use false para que ele não seja executado automaticamente quando o projeto for "seedado"
-    "name": "deadline", //...............................................| nome do seeder
-    "description": "Imagine a beautiful description here :)", //.........| descrição do seeder
-    "method": "POST", //.................................................| método usado nas requisições
-    "url": "http://localhost:8080/deadline/1", //........................| URL da requisição (quando gerado automaticamente insere a URL base do projeto, então se for alterada deve-se lembrar de inseri-la novamente)
-    "requests": [ // ....................................................| Array contendo as requisições a serem enviadas
+    "_help": "Use the requests array to put the body of your seeder. Each payload inserted will be a request on this route", //.. just a help message :)
+    "_active": true, //..................................................| seeder's status, use false for disable its execution when uses the entire project seeder command
+    "name": "deadline", //...............................................| seeder's name
+    "description": "Imagine a beautiful description here :)", //.........| seeder's description
+    "method": "POST", //.................................................| HTTP method used in the requests
+    "url": "http://localhost:8080/deadline/1", //........................| request URL
+    "requests": [ // ....................................................| Array containing the requests to be sent
       {
-        "_active": true, // ...............................................| situação da requisição, use false para que ela não seja executada durante o seeder
-        "_id": null, // ...................................................| identificador único da requisição (deve ser inserido manualmente)
-        "_database_id": null, // ..........................................| id retornado após a requisição (não deve ser alterado)
-        "data": { // ........................................................| payload que será enviado como body da requisição
+        "_active": true, // ...............................................| request's status, use false for disable its execution during the seeder
+        "_id": null, // ...................................................| request's unique identificator (must to be inserted manually)
+        "_database_id": null, // ..........................................| id returned after the request (shouldn't be changed)
+        "data": { // ........................................................| request's body
           "some_atrubute": "some_value",
           "some_atrubute2": "some_value2"
         }
@@ -86,9 +88,9 @@ Também é possível usar o comando `dbseeder {comandos...}` globalmente executa
   }
   ```
   
-## Trabalhos futuros
-- [ ] deixar estável funcionalidade de usar requisições de outro seeder como chaves estrangeiras
-- [ ] implementar interface gráfica usando Electron
+## Future features or enhancements
+- [ ] make the feature of use another seeder's requests as foreign keys stable
+- [ ] implements graphic interface using Electron
 
 ---
-Fiquem livres para sugerirem mudanças e melhorias para o projeto :)
+Feel free to sugest changes and enhancements for the project :)
